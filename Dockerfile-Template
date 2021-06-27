@@ -14,7 +14,7 @@
 FROM harisekhon/alpine-java:jre8
 MAINTAINER Hari Sekhon (https://www.linkedin.com/in/harisekhon)
 
-ARG HBASE_VERSION=2.1.3
+ARG HBASE_VERSION=%%HBASE_VERSION%%
 
 ENV PATH $PATH:/hbase/bin
 
@@ -91,6 +91,8 @@ COPY profile.d/java.sh /etc/profile.d/
 # Thrift    9090  / 9095
 # HMaster   16000 / 16010
 # RS        16201 / 16301
-EXPOSE 2181 8080 8085 9090 9095 16000 16010 16030 16201 16301
+EXPOSE 2181 8080 8085 9090 9095 16000 16010 16020 16030 16201 16301
+
+RUN ["chmod", "+x", "/entrypoint.sh"]
 
 ENTRYPOINT ["/entrypoint.sh"]
